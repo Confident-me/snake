@@ -6,33 +6,31 @@ $(function(){
 			s += '<div id="'+id+'" class="block"></div>'
 		}	
 	}
-		$('#sence').html(s);
+	$('#sence').html(s);
 
-		var snake = [{x:0,y:0},{x:0,y:1},{x:0,y:2}];
-		var data = {'0_0':true,'0_1':true,'0_2':true};
-		var huashe = function(){
-			
-			$.each(snake,function(index,value){
-				
-				$('#'+value.x +'_'+ value.y).css({backgroundImage:'url(./image/chase.jpg)',backgroundSize:'19px 19px'});
-			});
-		}
-		huashe();
+	var snake = [{x:0,y:0},{x:0,y:1},{x:0,y:2}];
+	var data = {'0_0':true,'0_1':true,'0_2':true};
+	var huashe = function(){
 
-		//投放食物(随机)
-		var x,y;
-		var dropFood = function(){
+		$.each(snake,function(index,value){
+
+			$('#'+value.x +'_'+ value.y).css({backgroundImage:'url(./image/chase.jpg)',backgroundSize:'100%',backgroundRepeat:'no-repeat'});
+		});
+	}
+	huashe();
+
+	var x,y;
+	var dropFood = function(){
+		x = Math.floor(Math.random()*20);
+		y = Math.floor(Math.random()*20);
+		while( data[x+'_'+y] ){
 			x = Math.floor(Math.random()*20);
 			y = Math.floor(Math.random()*20);
-			while( data[x+'_'+y] ){
-				x = Math.floor(Math.random()*20);
-				y = Math.floor(Math.random()*20);
-			}
-			$('#'+x+'_'+y).css({backgroundImage:'url(./image/food1.jpg)',backgroundSize:'19px 19px'});
+		}
+		$('#'+x+'_'+y).css({backgroundImage:'url(./image/food1.jpg)',backgroundSize:'100%'});
 			//return{x:x,y:y};
 		}
 		dropFood();
-		//var food = dropFood();
 
 		var fangxiang = 39;
 		var move = function(){
@@ -50,7 +48,7 @@ $(function(){
 				var newTou = {x:oldTou.x-1,y:oldTou.y};
 			}
 			if(newTou.x<0 || newTou.y<0 || newTou.x>19 || newTou.y>19 || data [ newTou.x+'_'+newTou.y ] ) {
-				alert("再来");
+				$('.imgs').css({display:'block',marginTop:0})
 				clearInterval(timerId);
 				return;
 			}
@@ -99,8 +97,19 @@ $(function(){
 			score += 100;
 			document.querySelector('#fenshu').innerHTML = score;
 		}
-	
 
-	
+		/*手机触屏滑动*/
+		touch.on('#sence','swipe',function(e){
+			var dict =  {'left':37,'right':39,'up':38,'down':40};
 
-})
+			if( Math.abs(dict[ e.direction ] - fangxiang) == 2 ){
+				return;
+			}
+			fangxiang = dict[e.direction];
+
+		})
+
+
+
+
+	})
