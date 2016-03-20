@@ -1,0 +1,48 @@
+#sence{
+	width: 400px;
+	height: 400px;
+	background-image: url(../image/bg1.jpg);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	border: 1px solid #B8860B;
+}
+.block{
+	width: 20px;
+	height: 20px;
+	border-radius: 90%;
+	float: left;
+	
+}
+.aa{
+	width: 100px;
+	height: 100px;
+	float: left;
+	margin-left: 70px;
+	margin-top: 20px;
+}
+#zanting{
+	background-image: url(../image/zanting.png);
+	background-size: 100px 100px;
+}
+#kaishi{
+	background-image: url(../image/kaishi.png);
+	background-size: 100px 100px;
+}
+.box{
+	height: 600px;
+	width: 550px;
+	margin: 0 auto;
+	position: relative;
+}
+#fenshu{
+	width: 80px;
+	height: 150px;
+	position: absolute;
+	right: 30px;
+	top: 50px;
+	background-image: url(../image/jifen.png);
+	background-size: 100px 150px;
+	line-height: 130px;
+	padding-left: 20px;
+	color: #222;
+}
